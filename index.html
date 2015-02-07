@@ -102,15 +102,23 @@ zz<!-- Creas un html normal html5 de preferencia para emular la pagina instala e
 $('#formulario').submit(function() {
     var fecha1 = $("#fecha1").val();
     var fecha2 = $("#fecha2").val();
+    var d1 = fecha1.substring(0,2);
+    var m1 = fecha1.substring(3,5);
+    var a1 = fecha1.substring(6,10);
+    var d2 = fecha2.substring(0,2);
+    var m2 = fecha2.substring(3,5);
+    var a2 = fecha2.substring(6,10);
+    //alert(d1+"/"+m1+"/"+a1);
+
 
     if(fecha1.length == 0 || fecha2.length == 0){
         alert("Inserta correctamente la fechas");
-        return false;
+    }else if(isNAN(d1) || isNAN(m1) || isNAN(a1) || isNAN(a2) || isNAN(m2) || isNAN(a2)){
+        alert("Inserta correctamente la fechas");
+    }else{
+       //alert(fecha1.length );
+        $.mobile.changePage("#home") 
     }
-
-    //alert(fecha1.length );
-    $.mobile.changePage("#home")
-    
     return false;
     
 });
