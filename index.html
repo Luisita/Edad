@@ -113,11 +113,11 @@ $('#formulario').submit(function() {
 
     if(fecha1.length == 0 || fecha2.length == 0){
         alert("Inserta correctamente la fechas");
-    }else if(isNAN(d1) || isNAN(m1) || isNAN(a1) || isNAN(a2) || isNAN(m2) || isNAN(a2)){
-        alert("Inserta correctamente la fechas");
+    }else if(isNumeric(d1) || isNumeric(m1) || isNumeric(a1) || isNumeric(a2) || isNumeric(m2) || isNumeric(a2)){
+        $.mobile.changePage("#home") 
     }else{
        //alert(fecha1.length );
-        $.mobile.changePage("#home") 
+        alert("Inserta correctamente la fechas"); 
     }
     return false;
     
