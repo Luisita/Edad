@@ -1,0 +1,128 @@
+zz<!-- Creas un html normal html5 de preferencia para emular la pagina instala el complemento ripple en chrome y ahi le das enable y te simula un dispositivo movil-->
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <!-- Esta linea es para que te detecte que es un movil -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edad</title>
+    <!-- Agrega los css y js de jquery mobile-->
+    <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.mobile.theme-1.4.5.min.css" />
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.ui.datepicker-es.js"></script>script>
+    <script>
+        $(function () {
+        $.datepicker.setDefaults($.datepicker.regional["es"]);
+            $("#fecha1").datepicker({
+                firstDay: 1,
+            });
+            $("#fecha2").datepicker({
+                firstDay: 1,
+            });
+        });
+    </script>
+    <style type="text/css">
+        body {
+            background-image: url("./assets/images/content5.jpg");
+            background-repeat:repeat; 
+            background-position:center center;
+        }
+        .ui-page, .ui-content {
+           /* background: linear-gradient( 45deg, #008080, #ffebcd);*/
+           background-image: url("./assets/images/content5.jpg");
+            background-repeat:repeat; 
+            background-position:center center;
+        }
+        @media screen and (max-width: 600px) {
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        @media screen and (max-width: 900px) {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+ 
+<body > 
+ 
+<div data-role="page" id="inicio">
+ 
+    <div data-role="header" style="background:#77b538;">
+        <h1>Calcula tu edad</h1>
+    </div>
+    
+    <div data-role="content">   
+        <form id="formulario" >
+                <label> Fecha de Nacimiento: DD/MM/YYYY </label> 
+                <input type="text" id="fecha1" placeholder="DD/MM/YYYY" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" maxlength="10"/>
+                <label> Fecha Actual: DD/MM/YYYY </label> 
+                <input type="text" id="fecha2" placeholder="DD/MM/YYYY" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" maxlength="10"/>
+                <br><br><br><br><br><br>
+                <span id="error"></span>
+              <input type="submit" value="Calcular">
+            </form>     
+    </div>
+     
+</div>
+ 
+<div data-role="page" id="home" >
+ 
+    <div data-role="header" style="background:#77b538;">
+        <h1>Bienvenido</h1>
+    </div>
+ 
+    <div data-role="content">   
+        <h2> Índice de Masa Corporal </h2>
+        <div id="resultado">
+            <b>Edad: </b> <input text="number" name="edad" id="edad" readonly/>
+            <span>Edad en días:<b><input text="number" name="dias" id="dias" readonly/></b><span>
+                <br>
+        <div>
+        <form id="regresar" >
+              <input type="submit" value="Regresar">
+        </form>  
+    </div>
+ 
+</div>
+ <!-- Toño el de faby -> 951-157-56-75-->
+<script>
+
+$('#formulario').submit(function() {
+    var fecha1 = $("#fecha1").val();
+    var fecha2 = $("#fecha2").val();
+
+    if(fecha1.length == 0 || fecha2.length == 0){
+        alert("Inserta correctamente la fechas");
+        return false;
+    }
+
+    //alert(fecha1.length );
+    $.mobile.changePage("#home")
+    
+    return false;
+    
+});
+
+$('#regresar').submit(function() { 
+    $.mobile.changePage("#inicio")
+    return false;
+    
+});
+    
+</script>
+ 
+</body>
+</html>
+</html>
