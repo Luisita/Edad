@@ -1,4 +1,4 @@
-zz<!-- Creas un html normal html5 de preferencia para emular la pagina instala el complemento ripple en chrome y ahi le das enable y te simula un dispositivo movil-->
+<!-- Creas un html normal html5 de preferencia para emular la pagina instala el complemento ripple en chrome y ahi le das enable y te simula un dispositivo movil-->
 <!DOCTYPE html>
 <html>
  
@@ -16,7 +16,7 @@ zz<!-- Creas un html normal html5 de preferencia para emular la pagina instala e
     <script type="text/javascript" src="cordova.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
     <script src="assets/js/jquery-ui.js"></script>
-    <script src="assets/js/jquery.ui.datepicker-es.js"></script>script>
+    <script src="assets/js/jquery.ui.datepicker-es.js"></script>
     <script>
         $(function () {
         $.datepicker.setDefaults($.datepicker.regional["es"]);
@@ -108,18 +108,22 @@ $('#formulario').submit(function() {
     var d2 = fecha2.substring(0,2);
     var m2 = fecha2.substring(3,5);
     var a2 = fecha2.substring(6,10);
-    //alert(d1+"/"+m1+"/"+a1);
+    //alert(d2+"/"+m2+"/"+a2);
+   // var resul = $.isNumeric(d1);
+   // alert(resul);
 
-
-    if(fecha1.length == 0 || fecha2.length == 0){
-        alert("Inserta correctamente la fechas");
-    }else if(isNumeric(d1) || isNumeric(m1) || isNumeric(a1) || isNumeric(a2) || isNumeric(m2) || isNumeric(a2)){
+    if($.isNumeric(d1) || $.isNumeric(m1) || $.isNumeric(a1) || $.isNumeric(a2) || $.isNumeric(m2) || $.isNumeric(a2)){
         $.mobile.changePage("#home") 
-    }else{
+    }else if(fecha1.length == 0 || fecha2.length == 0){
        //alert(fecha1.length );
         alert("Inserta correctamente la fechas"); 
+    }else{
+        alert("Inserta correctamente la fechas");
     }
-    return false;
+   
+    $("#fecha1").val("");
+    $("#fecha2").val("");
+   return false;
     
 });
 
