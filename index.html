@@ -154,7 +154,7 @@ $('#formulario').submit(function() {
             //alert(edad);
             $("#edad").val(edad);
            // alert(DiasEdad(edad,a1));
-            var dias = DiasEdad(edad,a1);
+            var dias = DiasEdad(a1,a2,m1,m2,d1,d2);
             $("#dias").val(dias);
             var semanas = SemanasEdad(dias);
             $("#semanas").val(semanas);
@@ -187,9 +187,9 @@ function Edad(anio1,anio2,mes1,mes2,dia1,dia2){
     }
 }
 
-function DiasEdad(edad,anio){
+function DiasEdad(anio1,anio2,mes1,mes2,dia1,dia2){
     var count = 0;
-    count = Date.UTC(2015,2-1,07,0,0,0)-Date.UTC(1992,1-1,08,0,0,0);
+    count = Date.UTC(anio2,mes2-1,dia2,0,0,0)-Date.UTC(anio1,mes1-1,dia1,0,0,0);
     var secleft= count/1000/60;
     var hrsleft= secleft/60;
     var daysleft= hrsleft/24;
