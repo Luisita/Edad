@@ -30,16 +30,48 @@
     </script>
     <style type="text/css">
         body {
-            background-image: url("./assets/images/content5.jpg");
+            background-image: url("./assets/images/Fondo1.png");
             background-repeat:repeat; 
             background-position:center center;
+           /* color:white;*/
         }
         .ui-page, .ui-content {
            /* background: linear-gradient( 45deg, #008080, #ffebcd);*/
-           background-image: url("./assets/images/content5.jpg");
+           background-image: url("./assets/images/Fondo1.png");
             background-repeat:repeat; 
             background-position:center center;
+           /* color:white;*/
         }
+        
+        .boton{
+            background-color:#F0F8FF;
+            background-image: -webkit-linear-gradient(top,#F0F8FF,#F0F8FF);
+            background-image: -moz-linear-gradient(top,#F0F8FF,#F0F8FF);
+            background-image: -o-linear-gradient(top,#F0F8FF,#F0F8FF); 
+            background-image: linear-gradient(to bottom,#F0F8FF,#F0F8FF);  
+            border: 1px solid #F0F8FF;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -o-border-radius: 5px; 
+            border-radius: 5px;
+            -moz-box-shadow: 0 1px 1px #71C0FD inset;
+            -webkit-box-shadow: 0 1px 1px #71C0FD inset;
+            -o-box-shadow: 0 1px 1px #71C0FD inset;
+            box-shadow: 0 1px 1px #71C0FD inset;
+            padding: .8em 1.8em;
+            color: #8B4513;
+            font-weight:normal;
+            text-decoration:none;
+        }
+        .boton:hover {
+            background-color:#1A5DB3;
+            background-image: -webkit-linear-gradient(bottom,#F0F8FF,#F0F8FF);
+            background-image: -moz-linear-gradient(bottom,#F0F8FF,#F0F8FF);
+            background-image: -o-linear-gradient(bottom,#F0F8FF,#F0F8FF);  
+            background-image: linear-gradient(to top,#F0F8FF,#F0F8FF);
+            cursor: pointer;
+        }
+
         @media screen and (max-width: 600px) {
             img {
                 width: 100%;
@@ -59,7 +91,7 @@
  
 <div data-role="page" id="inicio">
  
-    <div data-role="header" style="background:#77b538;">
+    <div data-role="header" style="background-color:Sienna; color:white;">
         <h1>Calcula tu edad</h1>
     </div>
     
@@ -71,7 +103,7 @@
                 <input type="text" id="fecha2" placeholder="DD/MM/YYYY" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" maxlength="10"/>
                 <br><br><br><br><br><br>
                 <span id="error"></span>
-              <input type="submit" value="Calcular">
+              <input type="submit" class="boton" value="Calcular">
             </form>     
     </div>
      
@@ -79,7 +111,7 @@
  
 <div data-role="page" id="home" >
  
-    <div data-role="header" style="background:#77b538;">
+    <div data-role="header" style="background-color:Sienna; color:white;">
         <h1>Bienvenido</h1>
     </div>
  
@@ -87,11 +119,13 @@
         <h2> Índice de Masa Corporal </h2>
         <div id="resultado">
             <b>Edad: </b> <input text="number" name="edad" id="edad" readonly/>
-            <span>Edad en días:<b><input text="number" name="dias" id="dias" readonly/></b><span>
-                <br>
+            <span><b>Has vivido todo este tiempo</b></span><br>
+            <span>Días:<b><input text="number" name="dias" id="dias" readonly/></b><span>
+            <span>Semanas:<b><input text="number" name="semanas" id="semanas" readonly/></b><span>
+            <span>Meses:<b><input text="number" name="meses" id="meses" readonly/></b><span><br>
         <div>
         <form id="regresar" >
-              <input type="submit" value="Regresar">
+              <input type="submit" class="boton" value="Regresar">
         </form>  
     </div>
  
@@ -113,7 +147,21 @@ $('#formulario').submit(function() {
    // alert(resul);
 
     if($.isNumeric(d1) || $.isNumeric(m1) || $.isNumeric(a1) || $.isNumeric(a2) || $.isNumeric(m2) || $.isNumeric(a2)){
-        $.mobile.changePage("#home") 
+        if(a2 < a1){
+            alert("Inserta correctamente la fecha actual");
+        }else{
+            var edad = Edad(a1,a2,m1,m2,d1,d2);
+            //alert(edad);
+            $("#edad").val(edad);
+           // alert(DiasEdad(edad,a1));
+            var dias = DiasEdad(edad,a1);
+            $("#dias").val(dias);
+            var semanas = SemanasEdad(dias);
+            $("#semanas").val(semanas);
+            var meses = MesEdad(dias);
+            $("#meses").val(meses);
+            $.mobile.changePage("#home")  
+        }
     }else if(fecha1.length == 0 || fecha2.length == 0){
        //alert(fecha1.length );
         alert("Inserta correctamente la fechas"); 
@@ -127,7 +175,41 @@ $('#formulario').submit(function() {
     
 });
 
+function Edad(anio1,anio2,mes1,mes2,dia1,dia2){
+    if(mes2 < mes1){
+        return anio2 - anio1 -1;
+    }else {
+        return anio2 - anio1;
+    }
+
+    if(dia2 < dia1){
+      return anio2 - anio1 -1;  
+    }
+}
+
+function DiasEdad(edad,anio){
+    var count = 0;
+    count = Date.UTC(2015,2-1,07,0,0,0)-Date.UTC(1992,1-1,08,0,0,0);
+    var secleft= count/1000/60;
+    var hrsleft= secleft/60;
+    var daysleft= hrsleft/24;
+    count = daysleft;
+    //count = edad * 365 + count;
+    return count;
+}
+
+function SemanasEdad(dias){
+    return parseInt(dias/7);
+}
+
+function MesEdad(dias){
+    return parseInt(dias*0.0328);
+}
+
+
 $('#regresar').submit(function() { 
+    $("#fecha1").val("");
+    $("#fecha2").val("");
     $.mobile.changePage("#inicio")
     return false;
     
